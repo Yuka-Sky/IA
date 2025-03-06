@@ -39,11 +39,13 @@ The strategie is defined by the order of node expansion, along the following dim
 - Time complexity: How long does it takes (total number of nodes generated)?
 - Space complexity: How much memory it needs (maximum number of nodes in memory)?
 - Optimality: does it always find the best (least-cost) solution?
-Where the time and space complexity are mesured in terms of max branching factor of the tree (b), the depth of the least-cost solution (d), and the max depth of the state space (m).
+Where the time and space complexity are mesured in terms of max branching factor of the tree (b), the depth of the least-cost solution (d), and the max depth of the state space (m). It is also important to recap to avoid repeated states so it won't fall in a exponential problem (do avoid cycles and returning to previous state).
 
 The type can be divided in:
 - Blind/Uninformed Search: Breadth First, Depth First, Uniform Cost, Iterative Deepening, Bidirectional Search
-- Intelligent/Informed Search: Greedy Search, A* Algorithm
+- Intelligent/Informed/Heuristic Search: Choose the order of expansion of the nodes - Best-First Search: evaluate the interest to expand a Node.
+    - Greedy Search: f(n) = h(n) - estimates distance to solution
+    - A* Algorithm: f(n) = g(n) + h(n) - estimates cost of the best solution that passes through n
 
 ### BFS - Breadth-First Search
 - Strategy: Nodes at lowest depth are expanded first
@@ -66,15 +68,38 @@ The type can be divided in:
 - Strategy: Mix of BFS and DFS, perform limited depth search, iteratively, always increasing the depth limit
 - Complexity in time O(b^d) and in space O(b*d).
 - In general it is the best strategy for problems with a large search space and where the depth of the solution is not known
+
 ### Bidirectional Search
 - Strategy: Run forward search from the initial state and backward search from the target, simultaneously
 - Good: Can greatly reduce complexity over time
 - Has a lot of problems: Is it possible to generate predecessors? What if there are many objective states? How to do the "matching" between the two searches? What kind of search to do in the two halves?
 
+![Comparision](Gallery/ComparisionSearchS.png)
+> Note: b - branching factor; d - depth of sol; m - max depth; l - search limit depth
 
 ### Greedy Search
+- Strategy: Expand the node that appears to be closest to the solution. h(n) = estimated cost of the shortest path from state n to the objective (heuristic function)
+- Time complexity: O(b^m) but with a good heuristic function, it can decrease considerably
+- Complexity in space: O(b^m) for keeping all nodes in memory
+- Not always give an optimal solution and it's not complete for having cycles
+- It is necessary to detect repeated states (visited)
 
 ### The A* Algorithm
+- Strategy: Combines the greedy with the uniform search, minimizing the sum of the path already carried out with the minimum expected until the solution. 
+- Use f(n) = g(n) + h(n) where:
+    - f (n) = estimated cost of the cheapest solution that passes through node n
+    - g (n) = total cost, so far, to reach state n
+    - h (n) = estimated cost to reach the objective (you cannot overestimate the cost to reach the solution)
+- Is an optimal and complete algorithm
+- Exponential time complexity (depends on the quality of the heuristic)
+- Complexity in space: Keeps all nodes in memory
+
+### Weighted A* Search
+- Strategy: In comparasion od A* Search, we allow to use Inadmissible heuristic (that may 
+overestimate). We risk missing the optimal solution, but it can be more accurate, reducing the nodes expanded therefore exploring fewer nodes (less time/space)
+- Therefore, now the evaluation function will be:
+
+![evalFunc](Gallery/WeightedA.png)
 
 > Amount of 45 slides
 ---
