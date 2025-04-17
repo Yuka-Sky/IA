@@ -1,0 +1,10 @@
+brown purple
+red pink brown purple
+brown pink purple red
+orange
+orange pink cyan brown
+white red cyan
+white pink
+cyan white orange
+white purple cyan orange
+red

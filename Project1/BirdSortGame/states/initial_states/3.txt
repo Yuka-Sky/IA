@@ -1,0 +1,7 @@
+pink blue yellow
+brown yellow pink
+green brown brown
+blue yellow brown
+yellow pink blue
+blue green green
+green pink

@@ -1,0 +1,8 @@
+green blue
+green green green blue
+red blue red white
+red white
+orange white
+orange blue orange
+
+red orange white

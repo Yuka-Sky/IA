@@ -1,0 +1,6 @@
+brown purple cyan cyan
+purple brown purple
+purple cyan red
+red brown red red
+cyan brown
+
